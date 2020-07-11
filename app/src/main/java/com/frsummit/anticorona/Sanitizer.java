@@ -24,7 +24,7 @@ import java.util.TimerTask;
 public class Sanitizer extends Fragment {
     private View view;
     private ImageView imageView;
-    Button button;
+    private Button button;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -48,6 +48,7 @@ public class Sanitizer extends Fragment {
                     @Override
                     public void run() {
                         ((AnimationDrawable) imageView.getBackground()).start();
+                        soundOn();
                         stopAnimation();
                     }
                 });
@@ -62,9 +63,20 @@ public class Sanitizer extends Fragment {
             @Override
             public void run() {
                 ((AnimationDrawable) imageView.getBackground()).stop();
+                soundOff();
             }
         };
         Timer timer = new Timer();
         timer.schedule(task, 1400);
+    }
+
+    public void soundOn() {
+        final MediaPlayer mp = MediaPlayer.create(getContext(), R.raw.gunfire_);
+        mp.start();
+    }
+
+    public void soundOff() {
+        final MediaPlayer mp = MediaPlayer.create(getContext(), R.raw.gunfire_);
+        mp.stop();
     }
 }

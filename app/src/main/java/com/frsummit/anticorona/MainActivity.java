@@ -205,11 +205,6 @@ public class MainActivity extends Activity {
         showPopup(popupView);
     }
 
-    public void soundOn() {
-        final MediaPlayer mp = MediaPlayer.create(this, R.raw.gunfire_);
-        mp.start();
-    }
-
     public void showPopup(View view) {
         // inflate the layout of the popup window
 //        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
