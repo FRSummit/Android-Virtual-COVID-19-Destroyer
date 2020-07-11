@@ -49,15 +49,15 @@ public class MainActivity extends Activity {
         changeFragment();
 
         adView = findViewById(R.id.adView);
-        MobileAds.initialize(this, "ca-app-pub-4861848901455235~7992147502"); //Test App Id
-//        MobileAds.initialize(this, "ca-app-pub-4861848901455235~1288783011");
+//        MobileAds.initialize(this, "ca-app-pub-4861848901455235~7992147502"); //Test App Id
+        MobileAds.initialize(this, "ca-app-pub-4861848901455235~1288783011");
         AdRequest adRequest = new AdRequest.Builder()
                 .build();
         adView.loadAd(adRequest);
 
         mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId("ca-app-pub-4861848901455235/5674109958"); // Test Interstitial Video
-//        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/8691691433");
+//        mInterstitialAd.setAdUnitId("ca-app-pub-4861848901455235/5674109958"); // Test Interstitial Video
+        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/8691691433");
         AdRequest request = new AdRequest.Builder()
                 .build();
         mInterstitialAd.loadAd(request);
@@ -144,7 +144,7 @@ public class MainActivity extends Activity {
             }
         };
         Timer timer = new Timer();
-        timer.schedule(task, 1500);
+        timer.schedule(task, 5000);
     }
 
     private void loadFragment(Fragment fragment) {
