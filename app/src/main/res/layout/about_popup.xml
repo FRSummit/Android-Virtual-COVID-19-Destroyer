@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/popup_privacy"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/btn_back"
+    android:paddingTop="100dp"
+    android:paddingBottom="100dp"
+    android:paddingRight="20dp"
+    android:paddingLeft="20dp">
+
+    <TextView
+        android:id="@+id/pri_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Virtual COVID 19 Destroyer"
+        android:textSize="16dp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textColor="#222"/>
+
+    <TextView
+        android:id="@+id/pri_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pri_1"
+        android:layout_marginTop="6dp"
+        android:text="Destroy corona virus by playing this app and save other to effect by COVID 19"
+        android:textSize="14dp"
+        android:gravity="center"
+        android:textColor="#222" />
+
+    <TextView
+        android:id="@+id/pri_3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="DEV"
+        android:gravity="center"
+        android:textSize="12dp"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/pri_2"
+        android:textColor="#222"/>
+
+    <TextView
+        android:id="@+id/pri_4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pri_3"
+        android:layout_marginTop="6dp"
+        android:text="We work to destroy COVID 19"
+        android:gravity="center"
+        android:textSize="14dp"
+        android:textColor="#222" />
+
+</RelativeLayout>

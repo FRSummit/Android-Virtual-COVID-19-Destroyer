@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/sanitizer_rel_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingRight="25dp"
+        android:paddingLeft="25dp">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="350dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/kill_virus" />
+
+        <Button
+            android:id="@+id/my_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageView"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/button_background"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:text="Destroy Corona"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+</RelativeLayout>

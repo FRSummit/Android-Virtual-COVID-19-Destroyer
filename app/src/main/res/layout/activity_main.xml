@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/background"
+    tools:context=".MainActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:paddingLeft="40dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:paddingRight="40dp">
+
+        <Button
+            android:id="@+id/privacy_btn"
+            android:layout_width="28dp"
+            android:layout_height="35dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/privecy"
+            android:onClick="privacyBtnClick"/>
+
+        <Button
+            android:id="@+id/about_btn"
+            android:layout_width="28dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="20dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/privacy_btn"
+            android:background="@drawable/about_icon"
+            android:onClick="aboutBtnClick"/>
+
+        <Button
+            android:id="@+id/rating_btn"
+            android:layout_width="28dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="20dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/about_btn"
+            android:background="@drawable/rate_icon"
+            android:onClick="ratingBtnClick"/>
+
+<!--        <Button-->
+<!--            android:id="@+id/settings_btn"-->
+<!--            android:layout_width="28dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:layout_marginLeft="20dp"-->
+<!--            android:layout_centerVertical="true"-->
+<!--            android:layout_toRightOf="@+id/rating_btn"-->
+<!--            android:background="@drawable/settings_icon"-->
+<!--            android:onClick="settingsBtnClick"/>-->
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:onClick="fragmentClick" />
+
+</LinearLayout>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/popup_privacy"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/btn_back"
+    android:padding="6dp">
+
+    <TextView
+        android:id="@+id/pri_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Advertisement"
+        android:textSize="12dp"
+        android:textStyle="bold"
+        android:textColor="#222"/>
+
+    <TextView
+        android:id="@+id/pri_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pri_1"
+        android:layout_marginTop="10dp"
+        android:text="    So as to ensure that any promotions served to youngsters (or clients of obscure age) are proper and consistent with Google's strategies, you should utilize Google Play affirmed advertisement systems."
+        android:textSize="10dp"
+        android:textColor="#222" />
+
+    <TextView
+        android:id="@+id/pri_3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Terms and Conditions for Mobile Apps"
+        android:textSize="12dp"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/pri_2"
+        android:textColor="#222"/>
+
+    <TextView
+        android:id="@+id/pri_4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pri_3"
+        android:layout_marginTop="10dp"
+        android:text="    By and large, you'll likely need to set Terms and Conditions on the off chance that you have an application that takes an interest in some type of business (in the case of offering to clients legitimately or encouraging exchanging). Furthermore, some particular cases where they may be required are the place you:
+
+need to make legitimately required revelations identified with purchaser rights (particularly withdrawal and retraction rights);
+
+have distinctive client levels (eg. enlisted versus non-enrolled);
+
+your foundation permits clients to sell or exchange with different clients;
+
+encourage or in any case procedure installments or potentially other touchy client information;
+
+need to set the principles for client conduct and state reason for end of records;
+
+take an interest in associate projects;
+
+give a product or administration which can conceivably cause hurt whenever abused;
+
+might want to have some lawfully enforceable power over, and set standards about, how your application might be utilized.
+
+Specific accentuation ought to be given to account end provisions, installment conditions and the constraint of risk provisos (and disclaimers). "
+        android:textSize="10dp"
+        android:textColor="#222" />
+
+    <TextView
+        android:id="@+id/pri_5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="APIs, SDKs and impartial age screen "
+        android:textSize="12dp"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/pri_4"
+        android:textColor="#222"/>
+
+    <TextView
+        android:id="@+id/pri_6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pri_5"
+        android:layout_marginTop="10dp"
+        android:text="    Applications that exclusively target youngsters must not contain any APIs or SDKs that are not endorsed for use in kid coordinated administrations. Applications that target the two youngsters and more established crowds ought not execute APIs or SDKs that are not endorsed for use in kid coordinated administrations except if they are utilized behind an impartial age screen or actualized in a manner that doesn't bring about the assortment of information from kids."
+        android:textSize="10dp"
+        android:textColor="#222" />
+
+</RelativeLayout>
