@@ -11,6 +11,7 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Layout;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -20,6 +21,13 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
+import android.widget.Toast;
+
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
 
 import org.xmlpull.v1.XmlPullParser;
 
@@ -29,27 +37,103 @@ import java.util.TimerTask;
 public class MainActivity extends Activity {
     private Intent intent_fromAbout;
     private boolean isChecked = true;
-//    private Switch sw;
+    AdView adView;
+    private InterstitialAd mInterstitialAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /*intent_fromAbout = getIntent();
-        if(intent_fromAbout.getExtras() != null) {
-            if(intent_fromAbout.getExtras().get("activity").equals("AboutThisApp") || intent_fromAbout.getExtras().get("activity").equals("Index")) {
-                loadFragment(new Sanitizer());
-//                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-            }
-        } else {
-            loadFragment(new WelcomeFragment());
-            changeFragment();
-        }*/
-//        sw = (Switch) findViewById(R.id.sound_switch);
-
         loadFragment(new WelcomeFragment());
         changeFragment();
+
+        adView = findViewById(R.id.adView);
+        MobileAds.initialize(this, "ca-app-pub-4861848901455235~7992147502"); //Test App Id
+//        MobileAds.initialize(this, "ca-app-pub-4861848901455235~1288783011");
+        AdRequest adRequest = new AdRequest.Builder()
+                .build();
+        adView.loadAd(adRequest);
+
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId("ca-app-pub-4861848901455235/5674109958"); // Test Interstitial Video
+//        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/8691691433");
+        AdRequest request = new AdRequest.Builder()
+                .build();
+        mInterstitialAd.loadAd(request);
+
+        adEventForBannerAd();
+        adEventForInterstitialAd();
+    }
+
+    private void adEventForBannerAd() {
+        adView.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                Toast.makeText(getApplicationContext(), "you get loaded!", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onAdFailedToLoad(int errorCode) {
+                Toast.makeText(getApplicationContext(), "you are failed to load" + errorCode, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onAdOpened() {
+                Toast.makeText(getApplicationContext(), "you opened ad", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onAdClicked() {
+                Toast.makeText(getApplicationContext(), "you have clicked", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onAdLeftApplication() {
+                Toast.makeText(getApplicationContext(), "you left application", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onAdClosed() {
+                Toast.makeText(getApplicationContext(), "your ad is closed", Toast.LENGTH_SHORT).show();
+//                adView.loadAd(new AdRequest.Builder().build());
+            }
+        });
+    }
+
+    private void adEventForInterstitialAd() {
+        mInterstitialAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                Toast.makeText(getApplicationContext(), "you are loaded", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onAdFailedToLoad(int errorCode) {
+                Toast.makeText(getApplicationContext(), "you are failed to load", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onAdOpened() {
+                Toast.makeText(getApplicationContext(), "you opened ad", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onAdClicked() {
+                Toast.makeText(getApplicationContext(), "you have clicked", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onAdLeftApplication() {
+                Toast.makeText(getApplicationContext(), "you left application", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onAdClosed() {
+                Toast.makeText(getApplicationContext(), "your ad is closed", Toast.LENGTH_LONG).show();
+                mInterstitialAd.loadAd(new AdRequest.Builder().build());
+            }
+        });
     }
 
     private void changeFragment() {
@@ -57,17 +141,11 @@ public class MainActivity extends Activity {
             @Override
             public void run() {
                 loadFragment(new Sanitizer());
-//                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-//                finishscreen();
             }
         };
         Timer timer = new Timer();
         timer.schedule(task, 1500);
     }
-
-//    private void finishscreen() {
-//        this.finish();
-//    }
 
     private void loadFragment(Fragment fragment) {
         FragmentManager fm = getFragmentManager();
@@ -76,29 +154,47 @@ public class MainActivity extends Activity {
         fragmentTransaction.commit();
     }
 
-//    @Override
-//    public void finish() {
-//        super.finish();
-//        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-//    }
-
     public void fragmentClick(View view) {
         loadFragment(new Sanitizer());
+
+        if(mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+        } else {
+            Log.d("TAG", "The interstitial wasn't loaded yet.");
+        }
     }
 
     public void privacyBtnClick(View view) {
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         final View popupView = inflater.inflate(R.layout.popup_privacy, null);
         showPopup(popupView);
+
+        if(mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+        } else {
+            Log.d("TAG", "The interstitial wasn't loaded yet.");
+        }
     }
 
     public void aboutBtnClick(View view) {
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         final View popupView = inflater.inflate(R.layout.about_popup, null);
         showPopup(popupView);
+
+        if(mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+        } else {
+            Log.d("TAG", "The interstitial wasn't loaded yet.");
+        }
     }
 
     public void ratingBtnClick(View view) {
+        if(mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+        } else {
+            Log.d("TAG", "The interstitial wasn't loaded yet.");
+        }
+
         Uri uri = Uri.parse("https://play.google.com/store/apps/developer?id=$FRSummit$&hl=en");
         startActivity(new Intent(Intent.ACTION_VIEW, uri));
     }
@@ -114,33 +210,7 @@ public class MainActivity extends Activity {
         mp.start();
     }
 
-    /*public void switchClick() {
-        TimerTask task = new TimerTask() {
-            @Override
-            public void run() {
-//                RelativeLayout layout = (RelativeLayout)findViewById(R.id.popup_layout);
-////                sw.setTextOff("OFF");
-////                sw.setTextOn("ON");
-//                sw.setChecked(true);
-//                layout.addView(sw);
-
-                sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        if (isChecked) {
-                            System.out.println("True");
-                        } else {
-                            System.out.println("False");
-                        }
-                    }
-                });
-            }
-        };
-        Timer timer = new Timer();
-        timer.schedule(task, 1500);
-    }*/
-
     public void showPopup(View view) {
-
         // inflate the layout of the popup window
 //        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
 //        final View popupView = inflater.inflate(R.layout.popup, null);
@@ -165,8 +235,3 @@ public class MainActivity extends Activity {
         });
     }
 }
-
-
-/**
- * Virtual Covid 19 Destroyer
- **/
